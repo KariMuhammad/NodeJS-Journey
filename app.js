@@ -5,6 +5,7 @@ require("dotenv").config();
 const express = require("express");
 const app = express();
 const config = require("./config");
+const { bookRoute } = require("./routes/book-routes");
 
 // Setup Database
 require("./database/db");
@@ -14,6 +15,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 // Setup Routes
+app.use("/books", bookRoute);
 
 const port = config.port || 3000;
 app.listen(port, () => {
