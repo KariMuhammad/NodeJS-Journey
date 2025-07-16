@@ -1,0 +1,37 @@
+#################################################################
+# Create New Book Document in Collection Database
+POST  http://localhost:3000/books/add HTTP/1.1
+content-type: application/json
+
+{
+    "title": "Document for Deletion",
+    "author": "Unknown author",
+    "publicationYear": 2021
+}
+
+#################################################################
+# Get All Books Documents from Collection
+GET http://localhost:3000/books/get
+Content-Type: application/json
+
+#################################################################
+# Get Specific Book Details by Id
+GET http://localhost:3000/books/get/68779b3173acb8fd750bb94f
+Content-Type: application/json
+
+#################################################################
+# Update Specific Book Document by ID
+PATCH http://localhost:3000/books/update/68779b3173acb8fd750bb94f
+Content-Type: application/json
+
+{
+    "title": "Harry Potter P1 Edition"
+}
+
+#################################################################
+# Delete Specific Book Document by ID
+DELETE http://localhost:3000/books/delete/68779ce873acb8fd750bb95a
+Content-Type: application/json
+
+
+#################################################################

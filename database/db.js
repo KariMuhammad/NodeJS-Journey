@@ -7,5 +7,5 @@ mongoose
     console.log("Database Connected correctly");
   })
   .catch((error) => {
-    console.error("Failed Connecting to Database!");
+    console.error("Failed Connecting to Database!", error);
   });
