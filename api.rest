@@ -1,0 +1,32 @@
+############################################################################
+# ============================ Create new User ============================
+POST http://localhost:3000/api/auth/register
+Content-Type: application/json
+
+{
+    "username": "Karim Muhammad",
+    "email": "kimo@gmail.com",
+    "password": "KimoOmar"
+}
+
+############################################################################
+# ============================ Login with email ============================
+POST http://localhost:3000/api/auth/login
+Content-Type: application/json
+
+{
+    "email": "kimo@gmail.com",
+    "password": "KimoOmar"
+}
+
+############################################################################
+# ============================ Go into Home ============================
+GET http://localhost:3000/api/home/welcome
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2ODgxNDE0ZDFiODg3MTY4NTA0NTcwNWEiLCJ1c2VybmFtZSI6IkthcmltIE11aGFtbWFkIiwicm9sZSI6InVzZXIiLCJpYXQiOjE3NTMzNTQyMTQsImV4cCI6MTc1MzM1NTExNH0.Zox4scTDSdhWP9IpBuY05BZi-iV9B1A0BRDeh86Fj9Y
+
+############################################################################
+# ============================ Go into Dashboard ============================
+GET http://localhost:3000/api/admin/dashboard
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2ODgxNDE0ZDFiODg3MTY4NTA0NTcwNWEiLCJ1c2VybmFtZSI6IkthcmltIE11aGFtbWFkIiwicm9sZSI6InVzZXIiLCJpYXQiOjE3NTMzNTQyMTQsImV4cCI6MTc1MzM1NTExNH0.Zox4scTDSdhWP9IpBuY05BZi-iV9B1A0BRDeh86Fj9Y
