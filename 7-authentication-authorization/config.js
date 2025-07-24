@@ -1,6 +1,6 @@
 module.exports = {
   port: process.env.PORT || 3000,
-  secret_key: process.env.SECRET_KEY,
+  jwt_secret_key: process.env.JWT_SECRET_KEY,
 
   // Database
   atlas_db: {
