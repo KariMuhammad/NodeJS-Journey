@@ -33,11 +33,11 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2ODgxN
 
 
 ############################################################################
-# ============================ Add new Image ============================
+# ============================ Add new Image  [use postman simpler] ============================
 POST http://localhost:3000/api/images
-Content-Type: multipart/form-data
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2ODgyYWZlZjFiYTExMTkzZGNhOWNiOGQiLCJ1c2VybmFtZSI6IkFkbWluIiwicm9sZSI6ImFkbWluIiwiaWF0IjoxNzUzMzk2OTYyLCJleHAiOjE3NTMzOTc4NjJ9.Z5BU1ZMrGjKOBPornZWUj33nDb7jsAc9xT6nm91eH00
 
-// use postman simpler
+image=@F:\NodeJS-Journey\8-file-upload\images\photo.jpg
 
 ############################################################################
 # ============================ Get Images ============================
