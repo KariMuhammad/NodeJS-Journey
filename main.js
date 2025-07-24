@@ -7,9 +7,7 @@ const app = express();
 const authRouter = require("./routes/auth");
 const homeRouter = require("./routes/home");
 const adminRouter = require("./routes/admin");
-
-// Import Middleware
-const { isAdmin } = require("./middlewares/auth");
+const imagesRouter = require("./routes/images");
 
 // Middlewares
 app.use(express.urlencoded({ extended: false }));
@@ -22,6 +20,7 @@ require("./database/db");
 app.use("/api/auth", authRouter);
 app.use("/api/home", homeRouter);
 app.use("/api/admin", /* 3#  auth */ adminRouter);
+app.use("/api/images", imagesRouter);
 
 // Start Server
 app.listen(config.port, () => {

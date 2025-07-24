@@ -31,9 +31,10 @@ module.exports = function auth(req, res, next) {
     }
 
     req.user = verifiedToken;
+    console.log("User", req.user);
 
     // current user is authenticated, but still not check its `role`
-    next();
+    return next();
   } catch (error) {
     console.log("Error -> ", error);
     res.status(500).json({

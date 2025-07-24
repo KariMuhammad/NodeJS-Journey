@@ -8,4 +8,12 @@ module.exports = {
     password: process.env.ATLAS_PASSWORD,
     url: process.env.ATLAS_CONNECTION,
   },
+
+  // cloudinary uploading assets
+  cloudinary: {
+    url: process.env.CLOUDINARY_URL,
+    name: process.env.CLOUDINARY_NAME,
+    api_key: process.env.CLOUDINARY_API_KEY,
+    secret_key: process.env.CLOUDINARY_SECRET_KEY,
+  },
 };

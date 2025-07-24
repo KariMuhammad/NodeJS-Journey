@@ -1,6 +1,7 @@
 module.exports = function only(role) {
   return function (req, res, next) {
-    if (req.user.role === role) next();
+    console.log("User Role", req.user.role);
+    if (req.user.role === role) return next(); // must `return`
 
     res.status(403).json({
       success: false,

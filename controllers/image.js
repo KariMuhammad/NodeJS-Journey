@@ -1,0 +1,45 @@
+const { uploadToCloudinary } = require("../services/upload-image");
+const imageModel = require("../models/image");
+
+exports.addImage = async (req, res) => {
+  try {
+    const file = req.file;
+    console.log("File", file);
+
+    if (!file) {
+      return res.status(401).json({
+        message: "No file uploaded!",
+      });
+    }
+
+    const uploadedFile = await uploadToCloudinary(file);
+    console.log("Uploaded File", uploadedFile);
+
+    const image = await imageModel.create({
+      publicUrl: uploadedFile.public_id,
+      url: uploadedFile.secure_url,
+      uploadedBy: req.user.userId,
+    });
+
+    return res.status(201).json({
+      success: true,
+      message: "Image uploaded successfully!",
+      data: image,
+    });
+  } catch (error) {
+    console.log("Upload Error -> ", error);
+    return res.status(500).json({
+      success: false,
+      message: "Failed to upload image",
+    });
+  }
+};
+
+exports.getImages = async (req, res) => {
+  const data = await imageModel
+    .find({})
+    .populate("uploadedBy", "-password -role");
+  return res.status(200).json({
+    data,
+  });
+};
