@@ -12,12 +12,13 @@ exports.addImage = async (req, res) => {
       });
     }
 
-    const uploadedFile = await uploadToCloudinary(file);
-    console.log("Uploaded File", uploadedFile);
+    // for memory storage
+    // const uploadedFile = await uploadToCloudinary(file);
+    // console.log("Uploaded File", uploadedFile);
 
     const image = await imageModel.create({
-      publicUrl: uploadedFile.public_id,
-      url: uploadedFile.secure_url,
+      publicUrl: file.path, // disk storage
+      url: file.path, // disk storage
       uploadedBy: req.user.userId,
     });
 
