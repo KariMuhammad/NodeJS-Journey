@@ -1,32 +1,92 @@
+@host = http://localhost:3000/api
+@user_email = kimoomar007@gmail.com
+@user_password = KimoOmar112233
+@admin_email = admin@gmail.com
+@admin_password = Admin1
+
 ############################################################################
 # ============================ Create new User ============================
-POST http://localhost:3000/api/auth/register
+POST {{ host }}/auth/register
 Content-Type: application/json
 
 {
-    "username": "Karim Muhammad",
-    "email": "kimo@gmail.com",
-    "password": "KimoOmar"
+    "username": "karim-muhammad",
+    "email": "kimoomar007@gmail.com",
+    "password": "KimoOmar112233"
 }
 
 ############################################################################
 # ============================ Login with email ============================
-POST http://localhost:3000/api/auth/login
+# @name login
+POST {{ host }}/auth/login
+Content-Type: application/json
+Accept: application/json
+
+{
+    "email": "{{user_email}}",
+    "password": "{{user_password}}"
+}
+
+
+############################################################################
+# ============================ Change Password of User ============================
+POST {{ host }}/auth/change-password
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+{
+    "old_password": "admin",
+    "new_password": "Admin1",
+    "new_password_confirmation": "Admin1"
+}
+
+############################################################################
+# ============================ Forget Password of User ============================
+POST {{ host }}/auth/forget-password
 Content-Type: application/json
 
 {
-    "email": "kimo@gmail.com",
-    "password": "KimoOmar"
+    "email": "kimoomar007@gmail.com"
+}
+
+############################################################################
+# ============================ Reset Password of User ============================
+POST {{ host }}/auth/reset-password-token
+Content-Type: application/json
+
+{
+    "token": "60f9ba4872a760821f21a8d1787e1942776a4a87da6e490d6f431522b3c9eb09",
+    "new_password": "Kerber",
+    "new_password_confirmation": "Kerber"
 }
 
 ############################################################################
 # ============================ Go into Home ============================
-GET http://localhost:3000/api/home/welcome
+@token = {{ login.response.body.token }}
+
+GET {{ host }}/home/welcome
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2ODgxNDE0ZDFiODg3MTY4NTA0NTcwNWEiLCJ1c2VybmFtZSI6IkthcmltIE11aGFtbWFkIiwicm9sZSI6InVzZXIiLCJpYXQiOjE3NTMzNTQyMTQsImV4cCI6MTc1MzM1NTExNH0.Zox4scTDSdhWP9IpBuY05BZi-iV9B1A0BRDeh86Fj9Y
+Authorization: Bearer {{token}}
 
 ############################################################################
 # ============================ Go into Dashboard ============================
-GET http://localhost:3000/api/admin/dashboard
+GET {{ host }}/admin/dashboard
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2ODgxNDE0ZDFiODg3MTY4NTA0NTcwNWEiLCJ1c2VybmFtZSI6IkthcmltIE11aGFtbWFkIiwicm9sZSI6InVzZXIiLCJpYXQiOjE3NTMzNTQyMTQsImV4cCI6MTc1MzM1NTExNH0.Zox4scTDSdhWP9IpBuY05BZi-iV9B1A0BRDeh86Fj9Y
+Authorization: Bearer {{token}}
+
+
+############################################################################
+# ============================ Add new Image  [use postman simpler] ============================
+POST {{ host }}/images
+Authorization: Bearer {{token}}
+
+image=@./images/photo.jpg
+
+############################################################################
+# ============================ Get Images ============================
+GET {{ host }}/images
+
+############################################################################
+# ============================ Get Paginated Images ============================
+GET {{ host }}/images/paginated?page=2&select=-_id
+
