@@ -2,7 +2,7 @@
 @user_email = kimo@gmail.com
 @user_password = KimoOmar
 @admin_email = admin@gmail.com
-@admin_password = admin
+@admin_password = Admin1
 
 ############################################################################
 # ============================ Create new User ============================
@@ -18,7 +18,6 @@ Content-Type: application/json
 ############################################################################
 # ============================ Login with email ============================
 # @name login
-
 POST {{ host }}/auth/login
 Content-Type: application/json
 Accept: application/json
@@ -28,6 +27,20 @@ Accept: application/json
     "password": "{{admin_password}}"
 }
 
+
+############################################################################
+
+############################################################################
+# ============================ Change Password of User ============================
+POST {{ host }}/auth/change-password
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+{
+    "old_password": "admin",
+    "new_password": "Admin1",
+    "new_password_confirmation": "Admin1"
+}
 
 ############################################################################
 # ============================ Go into Home ============================
