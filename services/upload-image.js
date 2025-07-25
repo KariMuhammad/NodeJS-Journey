@@ -24,3 +24,5 @@ exports.uploadToCloudinary = function uploadToCloudinary(file) {
       .end(file.buffer);
   });
 };
+
+exports.cloudinary = cloudinary;

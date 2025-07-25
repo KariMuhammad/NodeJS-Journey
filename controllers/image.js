@@ -1,5 +1,6 @@
-const { uploadToCloudinary } = require("../services/upload-image");
+const { uploadToCloudinary, cloudinary } = require("../services/upload-image");
 const imageModel = require("../models/image");
+const fs = require("fs");
 
 exports.addImage = async (req, res) => {
   try {
@@ -45,4 +46,35 @@ exports.getImages = async (req, res) => {
   return res.status(200).json({
     data,
   });
+};
+
+exports.deleteImage = async (req, res) => {
+  try {
+    const { imageId } = req.params;
+    const { userId } = req.user;
+
+    // 1. Disk Storage
+    // 1.1 Delete Image in Server
+    const image = await imageModel.findById(imageId);
+    fs.unlinkSync(image.url);
+
+    // 1.2 Delete Image record from database
+    await image.deleteOne();
+
+    // 2. Memory Storage
+    // 2.1 Delete From Cloudinary
+    // await cloudinary.uploader.destroy(image.publicUrl);
+
+    // 2.2 Delete Record from database
+    // await image.deleteOne();
+
+    // End Request
+    return res.status(204);
+  } catch (error) {
+    console.log("Error -> ", error);
+    res.status(500).json({
+      success: false,
+      message: "Failed to delete image operation!",
+    });
+  }
 };
