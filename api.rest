@@ -1,6 +1,6 @@
 @host = http://localhost:3000/api
-@user_email = kimo@gmail.com
-@user_password = KimoOmar
+@user_email = kimoomar007@gmail.com
+@user_password = KimoOmar112233
 @admin_email = admin@gmail.com
 @admin_password = Admin1
 
@@ -10,12 +10,13 @@ POST {{ host }}/auth/register
 Content-Type: application/json
 
 {
-    "username": "Admin",
-    "email": "admin@gmail.com",
-    "password": "admin"
+    "username": "karim-muhammad",
+    "email": "kimoomar007@gmail.com",
+    "password": "KimoOmar112233"
 }
 
 ############################################################################
+
 # ============================ Login with email ============================
 # @name login
 POST {{ host }}/auth/login
@@ -23,8 +24,8 @@ Content-Type: application/json
 Accept: application/json
 
 {
-    "email": "{{admin_email}}",
-    "password": "{{admin_password}}"
+    "email": "{{user_email}}",
+    "password": "{{user_password}}"
 }
 
 
@@ -40,6 +41,28 @@ Authorization: Bearer {{token}}
     "old_password": "admin",
     "new_password": "Admin1",
     "new_password_confirmation": "Admin1"
+}
+
+############################################################################
+
+############################################################################
+# ============================ Forget Password of User ============================
+POST {{ host }}/auth/forget-password
+Content-Type: application/json
+
+{
+    "email": "kimoomar007@gmail.com"
+}
+
+############################################################################
+# ============================ Reset Password of User ============================
+POST {{ host }}/auth/reset-password-token
+Content-Type: application/json
+
+{
+    "token": "60f9ba4872a760821f21a8d1787e1942776a4a87da6e490d6f431522b3c9eb09",
+    "new_password": "Kerber",
+    "new_password_confirmation": "Kerber"
 }
 
 ############################################################################

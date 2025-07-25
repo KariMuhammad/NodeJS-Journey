@@ -21,6 +21,9 @@ const userSchema = new Schema({
     required: true,
   },
 
+  passwordResetToken: String,
+  passwordResetExpires: Number,
+
   role: {
     type: String,
     enum: ["user", "admin"], // there is "super-admin" but it is only for one user
