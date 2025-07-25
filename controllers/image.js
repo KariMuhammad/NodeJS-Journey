@@ -22,6 +22,8 @@ exports.addImage = async (req, res) => {
       uploadedBy: req.user.userId,
     });
 
+    // fs.unlinkSync(req.file.path)
+
     return res.status(201).json({
       success: true,
       message: "Image uploaded successfully!",

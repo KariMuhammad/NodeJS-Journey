@@ -1,6 +1,12 @@
+@host = http://localhost:3000/api
+@user_email = kimo@gmail.com
+@user_password = KimoOmar
+@admin_email = admin@gmail.com
+@admin_password = admin
+
 ############################################################################
 # ============================ Create new User ============================
-POST http://localhost:3000/api/auth/register
+POST {{ host }}/auth/register
 Content-Type: application/json
 
 {
@@ -11,34 +17,40 @@ Content-Type: application/json
 
 ############################################################################
 # ============================ Login with email ============================
-POST http://localhost:3000/api/auth/login
+# @name login
+
+POST {{ host }}/auth/login
 Content-Type: application/json
+Accept: application/json
 
 {
-    "email": "admin@gmail.com",
-    "password": "admin"
+    "email": "{{admin_email}}",
+    "password": "{{admin_password}}"
 }
+
 
 ############################################################################
 # ============================ Go into Home ============================
-GET http://localhost:3000/api/home/welcome
+@token = {{ login.response.body.token }}
+
+GET {{ host }}/home/welcome
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2ODgxNDE0ZDFiODg3MTY4NTA0NTcwNWEiLCJ1c2VybmFtZSI6IkthcmltIE11aGFtbWFkIiwicm9sZSI6InVzZXIiLCJpYXQiOjE3NTMzNTQyMTQsImV4cCI6MTc1MzM1NTExNH0.Zox4scTDSdhWP9IpBuY05BZi-iV9B1A0BRDeh86Fj9Y
+Authorization: Bearer {{token}}
 
 ############################################################################
 # ============================ Go into Dashboard ============================
-GET http://localhost:3000/api/admin/dashboard
+GET {{ host }}/admin/dashboard
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2ODgxNDE0ZDFiODg3MTY4NTA0NTcwNWEiLCJ1c2VybmFtZSI6IkthcmltIE11aGFtbWFkIiwicm9sZSI6InVzZXIiLCJpYXQiOjE3NTMzNTQyMTQsImV4cCI6MTc1MzM1NTExNH0.Zox4scTDSdhWP9IpBuY05BZi-iV9B1A0BRDeh86Fj9Y
+Authorization: Bearer {{token}}
 
 
 ############################################################################
 # ============================ Add new Image  [use postman simpler] ============================
-POST http://localhost:3000/api/images
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2ODgyYWZlZjFiYTExMTkzZGNhOWNiOGQiLCJ1c2VybmFtZSI6IkFkbWluIiwicm9sZSI6ImFkbWluIiwiaWF0IjoxNzUzMzk2OTYyLCJleHAiOjE3NTMzOTc4NjJ9.Z5BU1ZMrGjKOBPornZWUj33nDb7jsAc9xT6nm91eH00
+POST {{ host }}/images
+Authorization: Bearer {{token}}
 
-image=@F:\NodeJS-Journey\8-file-upload\images\photo.jpg
+image=@./images/photo.jpg
 
 ############################################################################
 # ============================ Get Images ============================
-GET http://localhost:3000/api/images
+GET {{ host }}/images
