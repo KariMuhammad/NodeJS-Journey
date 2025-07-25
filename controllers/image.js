@@ -48,6 +48,32 @@ exports.getImages = async (req, res) => {
   });
 };
 
+exports.getPaginatedImages = async (req, res) => {
+  const { page = 1, limit = 2, select = "", sort = "createdAt" } = req.query;
+  const skip = (page - 1) * limit;
+  console.log("Query", req.query);
+
+  const totalDocuments = await imageModel.countDocuments();
+  const totalPages = Math.ceil(totalDocuments / limit);
+
+  const data = await imageModel
+    .find({})
+    .skip(skip)
+    .limit(limit)
+    .select(select)
+    .sort(sort)
+    .populate("uploadedBy", "-password -role");
+
+  return res.status(200).json({
+    data,
+    page,
+    totalPages,
+    totalDocuments,
+    next: totalPages > page ? page + 1 : null,
+    prev: totalPages <= page ? page - 1 : null,
+  });
+};
+
 exports.deleteImage = async (req, res) => {
   try {
     const { imageId } = req.params;
