@@ -282,9 +282,9 @@ ISC License - Feel free to use this code for learning and development purposes.
 
 **KariMuhammad**
 
-📧 Contact: [karimuhammad4455@gmail.com]
+📧 Contact: [Me](karimuhammad4455@gmail.com)
 🔗 GitHub: [@KariMuhammad](https://github.com/KariMuhammad)
-💼 LinkedIn: [www.linkedin.com/in/karim-muhammad-561573289]
+💼 LinkedIn: [Profile](www.linkedin.com/in/karim-muhammad-561573289)
 
 ---
 
