@@ -88,5 +88,5 @@ GET {{ host }}/images
 
 ############################################################################
 # ============================ Get Paginated Images ============================
-GET {{ host }}/images/paginated?page=2&select=-_id
+GET {{ host }}/images/paginated?page=2&select=-_id -url
 
