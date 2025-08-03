@@ -1,0 +1,21 @@
+#### Objectives
+
+- Create a simple logger middleware for a Node.js application.
+- Create a `Cors` middleware to handle Cross-Origin Resource Sharing.
+  - Allow specific origins.
+  - Allow specific methods.
+  - Allow specific headers (e.g., `Content-Type`, `Authorization`).
+  - Allow credentials (cookies, HTTP authentication, etc.).
+- Create a `RateLimiter` middleware to limit the number of requests from a single IP address.
+  - Set a maximum number of requests per minute.
+  - Return a 429 status code when the limit is exceeded.
+- Create API Error Handling
+  - `APIError` class to handle errors in a structured way.
+  - `asyncHandler` function to wrap async route handlers and catch errors.
+  - Global error handling middleware to catch all errors thrown in async callbacks and send a structured response.
+  - Return a 500 status code for unhandled errors.
+- Create API versioning
+  - Use a version prefix in the API routes (e.g., `/api/v1/resource`).
+  - Implement a versioning strategy that allows for future versions without breaking existing clients.
+- Create a simple health check endpoint
+  - Create a `/welcome` endpoint that returns a 200 status code and a simple message indicating the service is running.
