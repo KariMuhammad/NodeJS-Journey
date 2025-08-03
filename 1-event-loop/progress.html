@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <!-- 
+        Rendering occurs after javascript task is complete, then browser paint the updated state
+        so see difference between `count`()` vs. `count2()`
+    -->
+    <div id="progress"></div>
+
+    <script>
+      let i = 0;
+
+      function count1() {
+        for (let i = 0; i < 1e6; i++) {
+          i++;
+          progress.innerHTML = i;
+        }
+      }
+
+      function count2() {
+        // do a piece of the heavy job (*)
+        do {
+          i++;
+          progress.innerHTML = i;
+        } while (i % 1e3 != 0);
+
+        if (i < 1e7) {
+          console.log("Timer");
+          setTimeout(count2);
+          //   queueMicrotask(count2); works as syncrhonous (hang up browser)
+        }
+      }
+
+      count2();
+    </script>
+  </body>
+</html>
